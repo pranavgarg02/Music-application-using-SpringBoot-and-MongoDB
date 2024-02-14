@@ -1,0 +1,19 @@
+server:
+  port: 8083
+  
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: MusicFileMinIO
+          uri: http://localhost:8081/
+          predicates:
+            - Path= /server/**
+        - id: MetaDataUser
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/user/**
+        - id: SongDataUser
+          uri: http://localhost:8084/
+          predicates :
+          - Path=/songs/** 
